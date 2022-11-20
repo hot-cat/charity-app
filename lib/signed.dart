@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'custmolscrollBar.dart';
+
 class SignedScreen extends StatefulWidget {
   SignedScreen({
     Key? key,
@@ -14,6 +16,11 @@ class SignedScreen extends StatefulWidget {
 class _SignedScreen extends State<SignedScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Signed Screen"));
+    return Column(
+      children: [
+        CustomScrollviewAppBar(offset: 0),
+        Expanded(child: Center(child: Text("Signed Screen"))),
+      ],
+    );
   }
 }

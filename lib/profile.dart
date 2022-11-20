@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'custmolscrollBar.dart';
+
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({
     Key? key,
@@ -14,6 +16,11 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreen extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Profile Screen"));
+    return Column(
+      children: [
+        CustomScrollviewAppBar(offset: 0),
+        Expanded(child: Center(child: Text("Profile Screen"))),
+      ],
+    );
   }
 }

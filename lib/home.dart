@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
+import 'custmolscrollBar.dart';
+
 class HomeScreen extends StatefulWidget {
   HomeScreen({
     Key? key,
@@ -15,16 +17,43 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
+  final ScrollController _controller = ScrollController();
+
+  double _offset = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      setState(() {
+        _offset = _controller.offset;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child: ListView.builder(
-                itemCount: 30,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text('Item ${index + 1}'),
-                  );
-                })));
+        body: Column(
+      children: [
+        CustomScrollviewAppBar(offset: _offset),
+        Expanded(
+          child: ListView.builder(
+              itemCount: 30,
+              controller: _controller,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text((index == 0) ? ' ' : 'Item ${index + 1}'),
+                );
+              }),
+        ),
+      ],
+    ));
   }
 }

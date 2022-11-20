@@ -2,7 +2,7 @@ import 'package:charity_app/home.dart';
 import 'package:charity_app/profile.dart';
 import 'package:charity_app/signed.dart';
 import 'package:charity_app/theme.dart';
-import 'package:charity_app/wavybar.dart';
+import 'package:charity_app/wave.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
@@ -73,8 +73,8 @@ class _MainState extends State<Main> {
             child: bodyContainer(),
             padding: EdgeInsets.only(bottom: bottomNavBarHeight),
           ),
-          IgnorePointer(
-              child: Align(alignment: Alignment.center, child: WavyBar())),
+          // IgnorePointer(
+          //     child: Align(alignment: Alignment.center, child: WavyBar())),
           Align(alignment: Alignment.bottomCenter, child: bottomNav()),
         ],
       ),
