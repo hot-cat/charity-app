@@ -1,4 +1,7 @@
+import 'package:charity_app/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:wave/config.dart';
+import 'package:wave/wave.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({
@@ -14,6 +17,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Home Screen"));
+    return Scaffold(
+        body: Center(
+            child: ListView.builder(
+                itemCount: 30,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    title: Text('Item ${index + 1}'),
+                  );
+                })));
   }
 }

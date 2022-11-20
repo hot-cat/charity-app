@@ -2,6 +2,7 @@ import 'package:charity_app/home.dart';
 import 'package:charity_app/profile.dart';
 import 'package:charity_app/signed.dart';
 import 'package:charity_app/theme.dart';
+import 'package:charity_app/wavybar.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
@@ -40,30 +41,19 @@ class _MainState extends State<Main> {
 
   double bottomNavBarHeight = 60;
 
+  static const LabelStyle = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+  );
+
   List<TabItem> tabItems = List.of([
-    TabItem(
-      Icons.home,
-      "Home",
-      AppColors.mainPurple,
-      labelStyle: TextStyle(
-        fontWeight: FontWeight.normal,
-      ),
-    ),
-    TabItem(
-      Icons.search,
-      "Signed",
-      AppColors.darkPurple,
-      labelStyle: TextStyle(
-        color: Colors.red,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    TabItem(
-      Icons.layers,
-      "Profile",
-      AppColors.lightDarkPurple,
-      circleStrokeColor: Colors.black,
-    ),
+    TabItem(Icons.home, "Home", Colors.white, labelStyle: LabelStyle),
+    TabItem(Icons.explore_outlined, "Signed", Colors.white,
+        labelStyle: LabelStyle),
+    TabItem(Icons.person_outline, "Profile", Colors.white,
+        labelStyle: LabelStyle
+        // circleStrokeColor: Colors.black,
+        ),
   ]);
 
   late CircularBottomNavigationController _navigationController;
@@ -83,7 +73,9 @@ class _MainState extends State<Main> {
             child: bodyContainer(),
             padding: EdgeInsets.only(bottom: bottomNavBarHeight),
           ),
-          Align(alignment: Alignment.bottomCenter, child: bottomNav())
+          IgnorePointer(
+              child: Align(alignment: Alignment.center, child: WavyBar())),
+          Align(alignment: Alignment.bottomCenter, child: bottomNav()),
         ],
       ),
     );
@@ -107,20 +99,11 @@ class _MainState extends State<Main> {
         break;
     }
 
-    return GestureDetector(
-      child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: selectedColor,
-          child: screen),
-      onTap: () {
-        if (_navigationController.value == tabItems.length - 1) {
-          _navigationController.value = 0;
-        } else {
-          _navigationController.value = _navigationController.value! + 1;
-        }
-      },
-    );
+    return Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: selectedColor,
+        child: screen);
   }
 
   Widget bottomNav() {
@@ -129,8 +112,10 @@ class _MainState extends State<Main> {
       controller: _navigationController,
       selectedPos: selectedPos,
       barHeight: bottomNavBarHeight,
+      normalIconColor: Colors.white,
+      selectedIconColor: AppColors.lightDarkPurple,
       // use either barBackgroundColor or barBackgroundGradient to have a gradient on bar background
-      barBackgroundColor: Colors.white,
+      barBackgroundColor: AppColors.lightPurple,
       // barBackgroundGradient: LinearGradient(
       //   begin: Alignment.bottomCenter,
       //   end: Alignment.topCenter,
@@ -139,14 +124,13 @@ class _MainState extends State<Main> {
       //     Colors.red,
       //   ],
       // ),
-      backgroundBoxShadow: <BoxShadow>[
-        BoxShadow(color: Colors.black45, blurRadius: 10.0),
-      ],
+      // backgroundBoxShadow: <BoxShadow>[
+      //   BoxShadow(color: Colors.black45, blurRadius: 10.0)],
       animationDuration: Duration(milliseconds: 300),
       selectedCallback: (int? selectedPos) {
         setState(() {
           this.selectedPos = selectedPos ?? 0;
-          print(_navigationController.value);
+          // print(_navigationController.value);
         });
       },
     );
