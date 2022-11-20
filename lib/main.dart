@@ -1,6 +1,7 @@
 import 'package:charity_app/home.dart';
 import 'package:charity_app/profile.dart';
 import 'package:charity_app/signed.dart';
+import 'package:charity_app/theme.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
@@ -12,9 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Charity App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: appTheme,
       home: Directionality(
         // use this property to change direction in whole app
         // CircularBottomNavigation will act accordingly
@@ -45,7 +44,7 @@ class _MainState extends State<Main> {
     TabItem(
       Icons.home,
       "Home",
-      Colors.blue,
+      AppColors.mainPurple,
       labelStyle: TextStyle(
         fontWeight: FontWeight.normal,
       ),
@@ -53,7 +52,7 @@ class _MainState extends State<Main> {
     TabItem(
       Icons.search,
       "Signed",
-      Colors.orange,
+      AppColors.darkPurple,
       labelStyle: TextStyle(
         color: Colors.red,
         fontWeight: FontWeight.bold,
@@ -62,7 +61,7 @@ class _MainState extends State<Main> {
     TabItem(
       Icons.layers,
       "Profile",
-      Colors.red,
+      AppColors.lightDarkPurple,
       circleStrokeColor: Colors.black,
     ),
   ]);
