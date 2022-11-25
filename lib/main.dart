@@ -7,6 +7,8 @@ import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 
+import 'custmolscrollBar.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -40,6 +42,8 @@ class _MainState extends State<Main> {
   int selectedPos = 0;
 
   double bottomNavBarHeight = 60;
+  double _offset = 0.0;
+  var homeScreen = HomeScreen();
 
   static const LabelStyle = TextStyle(
     color: Colors.white,
@@ -61,6 +65,9 @@ class _MainState extends State<Main> {
   @override
   void initState() {
     super.initState();
+    setState(() {
+      // _offset = homeScreen.controller.offset;
+    });
     _navigationController = CircularBottomNavigationController(selectedPos);
   }
 
@@ -69,6 +76,8 @@ class _MainState extends State<Main> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
+          CustomScrollviewAppBar(offset: homeScreen.getOffset),
+          Text("${homeScreen.getOffset}"),
           Padding(
             child: bodyContainer(),
             padding: EdgeInsets.only(bottom: bottomNavBarHeight),
@@ -86,7 +95,9 @@ class _MainState extends State<Main> {
     Widget screen;
     switch (selectedPos) {
       case 0:
-        screen = HomeScreen();
+        homeScreen = HomeScreen();
+
+        screen = homeScreen;
         break;
       case 1:
         screen = SignedScreen();
@@ -95,14 +106,15 @@ class _MainState extends State<Main> {
         screen = ProfileScreen();
         break;
       default:
-        screen = HomeScreen();
+        homeScreen = HomeScreen();
+        screen = homeScreen;
         break;
     }
 
     return Container(
         width: double.infinity,
         height: double.infinity,
-        color: selectedColor,
+        color: Colors.transparent,
         child: screen);
   }
 

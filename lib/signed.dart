@@ -16,10 +16,15 @@ class SignedScreen extends StatefulWidget {
 class _SignedScreen extends State<SignedScreen> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        CustomScrollviewAppBar(offset: 0),
-        Expanded(child: Center(child: Text("Signed Screen"))),
+        // Center(child: Text("Signed Screen")),
+        // new CustomScrollviewAppBar(offset: 0),
+
+        Text(
+          "proba",
+          style: TextStyle(color: Colors.white),
+        )
       ],
     );
   }

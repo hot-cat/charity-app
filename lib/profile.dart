@@ -18,7 +18,7 @@ class _ProfileScreen extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomScrollviewAppBar(offset: 0),
+        // CustomScrollviewAppBar(offset: 0),
         Expanded(child: Center(child: Text("Profile Screen"))),
       ],
     );
